@@ -8,77 +8,100 @@ To write a program to predict the marks scored by a student using the simple lin
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. Upload the file to your cell.
-2. Type the required program.
-3. Print the program. 
-4. End the program.
+1.Import the standard Libraries.
+2.Set variables for assigning dataset values.
+3.Import linear regression from sklearn.
+4.Assign the points for representing in the graph.
+5.Predict the regression for marks by using the representation of the graph.
+6.Compare the graphs and hence we obtained the linear regression for the given datas.
 
 ## Program:
-```python
+```
 /*
 Program to implement the simple linear regression model for predicting the marks scored.
 Developed by: Daisy R
-RegisterNumber: 212223220016
+RegisterNumber:  212223220016
+*/
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from sklearn.metrics import mean_absolute_error , mean_squared_error
+from sklearn.metrics import mean_absolute_error,mean_squared_error
 df=pd.read_csv('student_scores.csv')
 df.head()
-
 df.tail()
-
-X = df.iloc[:,:-1].values
-X
-
-y = df.iloc[:,-1].values
+x = df.iloc[:,:-1].values
+x
+y = df.iloc[:,1].values
 y
-
 from sklearn.model_selection import train_test_split
-X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=1/3,random_state=0)
-
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=1/3,random_state=0)
 from sklearn.linear_model import LinearRegression
 regressor = LinearRegression()
-regressor.fit(X_train,y_train)
-y_pred=regressor.predict(X_test)
-
+regressor.fit(x_train,y_train)
+y_pred = regressor.predict(x_test)
 y_pred
-
 y_test
-
-plt.scatter(X_train,y_train,color="green")
-plt.plot(X_train,regressor.predict(X_train),color="blue")
-plt.title("Hours vs Scores (Training Set)")
+#Graph plot for training data
+plt.scatter(x_train,y_train,color='black')
+plt.plot(x_train,regressor.predict(x_train),color='purple')
+plt.title("Hours vs Scores(Training set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
-
-plt.scatter(X_test,y_test,color="grey")
-plt.plot(X_test,regressor.predict(X_test),color="purple")
-plt.title("Hours vs Scores (Training Set)")
+#Graph plot for test data
+plt.scatter(x_test,y_test,color='red')
+plt.plot(x_train,regressor.predict(x_train),color='blue')
+plt.title("Hours vs Scores(Testing set)")
 plt.xlabel("Hours")
 plt.ylabel("Scores")
 plt.show()
-*/
+mse=mean_absolute_error(y_test,y_pred)
+print('MSE = ',mse)
+mae=mean_absolute_error(y_test,y_pred)
+print('MAE = ',mae)
+rmse=np.sqrt(mse)
+print("RMSE= ",rmse)
 ```
 
 ## Output:
-![Screenshot 2023-04-02 135257](https://user-images.githubusercontent.com/118541549/229341282-3246344d-9aa2-4ac9-aa8c-8c7c5e0624ac.png)
 
+df.head()
 
-![Screenshot 2023-04-02 135324](https://user-images.githubusercontent.com/118541549/229341261-7f9066e2-464c-4379-80b1-63d0229eca57.png)
+![dfhead](https://user-images.githubusercontent.com/119393424/229978451-2b6bdc4f-522e-473e-ae2f-84ec824344c5.png)
 
+df.tail()
 
-![Screenshot 2023-04-02 135005](https://user-images.githubusercontent.com/118541549/229341137-bc6a2858-e5d8-49ed-85eb-8520dd7767dd.png)
+![dftail](https://user-images.githubusercontent.com/119393424/229978854-6af7d9e9-537f-4820-a10b-ab537f3d0683.png)
 
+Array value of X
 
-![ml2 4](https://user-images.githubusercontent.com/118541549/229340951-cf9e78cd-8b9c-47c0-ace7-076da23dd078.png)
-![ml2 5](https://user-images.githubusercontent.com/118541549/229340953-26bf19f8-8d5c-4fe0-9b4f-71a64704fe2e.png)
-![ml2 6](https://user-images.githubusercontent.com/118541549/229340985-d230d8f8-2d2a-4b17-a9ff-3c01d6d159b6.png)
-![ml2 7](https://user-images.githubusercontent.com/118541549/229340990-c3a9efc8-f1a6-4f0f-86f9-0abb47663efd.png)
-![ml2 8](https://user-images.githubusercontent.com/118541549/229340995-caefa0bd-c622-439a-a9ae-e588092fb398.png)
+![xvalue](https://user-images.githubusercontent.com/119393424/229978918-707c006d-0a30-4833-bf77-edd37e8849bb.png)
 
+Array value of Y
+
+![yvalue](https://user-images.githubusercontent.com/119393424/229978994-b0d2c87c-bef9-4efe-bba2-0bc57d292d20.png)
+
+Values of Y prediction
+
+![ypred](https://user-images.githubusercontent.com/119393424/229979053-f32194cb-7ed4-4326-8a39-fe8186079b63.png)
+
+Array values of Y test
+
+![ytest](https://user-images.githubusercontent.com/119393424/229979114-3667c4b7-7610-4175-9532-5538b83957ac.png)
+
+Training Set Graph
+
+![train](https://user-images.githubusercontent.com/119393424/229979169-ad4db5b6-e238-4d80-ae5b-405638820d35.png)
+
+Test Set Graph
+
+![test](https://user-images.githubusercontent.com/119393424/229979225-ba90853c-7fe0-4fb2-8454-a6a0b921bdc1.png)
+
+Values of MSE, MAE and RMSE
+
+![mse](https://user-images.githubusercontent.com/119393424/229979276-bb9ffc68-25f8-42fe-9f2a-d7187753aa1c.png)
 
 
 ## Result:
 Thus the program to implement the simple linear regression model for predicting the marks scored is written and verified using python programming.
+
